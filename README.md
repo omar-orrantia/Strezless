@@ -1,15 +1,25 @@
 # Strezless Musick Nexus Metadata Kotlin API Library
 
+<!-- x-release-please-start-version -->
+
 [![Maven Central](https://img.shields.io/maven-central/v/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin)](https://central.sonatype.com/artifact/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1)
 [![javadoc](https://javadoc.io/badge2/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1)
+
+<!-- x-release-please-end -->
 
 The Strezless Musick Nexus Metadata Kotlin SDK provides convenient access to the Strezless Musick Nexus Metadata REST API from applications written in Kotlin.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
+<!-- x-release-please-start-version -->
+
 KDocs are available on [javadoc.io](https://javadoc.io/doc/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1).
 
+<!-- x-release-please-end -->
+
 ## Installation
+
+<!-- x-release-please-start-version -->
 
 ### Gradle
 
@@ -26,6 +36,8 @@ implementation("com.strezless_musick_nexus_metadata.api:strezless-musick-nexus-m
   <version>0.0.1</version>
 </dependency>
 ```
+
+<!-- x-release-please-end -->
 
 ## Requirements
 
@@ -574,4 +586,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/omar-orrantia/music-metadata/issues) with questions, bugs, or suggestions.

@@ -11,7 +11,7 @@ configure<PublishingExtension> {
             pom {
                 name.set("OpenAPI 3.0 Pet Store")
                 description.set("This is a sample Pet Store Server based on the OpenAPI 3.0 specification.")
-                url.set("https://www.github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin")
+                url.set("https://www.github.com/omar-orrantia/music-metadata")
 
                 licenses {
                     license {
@@ -26,9 +26,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin.git")
-                    developerConnection.set("scm:git:git://github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin.git")
-                    url.set("https://github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin")
+                    connection.set("scm:git:git://github.com/omar-orrantia/music-metadata.git")
+                    developerConnection.set("scm:git:git://github.com/omar-orrantia/music-metadata.git")
+                    url.set("https://github.com/omar-orrantia/music-metadata")
                 }
 
                 versionMapping {
