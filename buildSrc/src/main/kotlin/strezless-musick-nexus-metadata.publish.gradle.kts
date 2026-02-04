@@ -11,7 +11,7 @@ configure<PublishingExtension> {
             pom {
                 name.set("OpenAPI 3.0 Pet Store")
                 description.set("This is a sample Pet Store Server based on the OpenAPI 3.0 specification.")
-                url.set("https://www.github.com/omar-orrantia/Strezless-Musick-Productionz-Founder")
+                url.set("https://www.github.com/omar-orrantia/Strezless")
 
                 licenses {
                     license {
@@ -26,9 +26,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/omar-orrantia/Strezless-Musick-Productionz-Founder.git")
-                    developerConnection.set("scm:git:git://github.com/omar-orrantia/Strezless-Musick-Productionz-Founder.git")
-                    url.set("https://github.com/omar-orrantia/Strezless-Musick-Productionz-Founder")
+                    connection.set("scm:git:git://github.com/omar-orrantia/Strezless.git")
+                    developerConnection.set("scm:git:git://github.com/omar-orrantia/Strezless.git")
+                    url.set("https://github.com/omar-orrantia/Strezless")
                 }
 
                 versionMapping {
