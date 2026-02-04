@@ -7,14 +7,14 @@ import com.strezless_musick_nexus_metadata.api.core.ClientOptions
 import com.strezless_musick_nexus_metadata.api.core.RequestOptions
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponse
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
-import com.strezless_musick_nexus_metadata.api.models.users.User
-import com.strezless_musick_nexus_metadata.api.models.users.UserCreateParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserCreateWithListParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserDeleteParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserLoginParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserLogoutParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserRetrieveParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserUpdateParams
+import com.strezless_musick_nexus_metadata.api.models.user.User
+import com.strezless_musick_nexus_metadata.api.models.user.UserCreateParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserCreateWithListParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserDeleteParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserLoginParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserLogoutParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserRetrieveParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 
 interface UserService {
 

@@ -31,11 +31,11 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
         WithRawResponseImpl(clientOptions)
     }
 
-    private val pets: PetService by lazy { PetServiceImpl(clientOptionsWithUserAgent) }
+    private val pet: PetService by lazy { PetServiceImpl(clientOptionsWithUserAgent) }
 
     private val store: StoreService by lazy { StoreServiceImpl(clientOptionsWithUserAgent) }
 
-    private val users: UserService by lazy { UserServiceImpl(clientOptionsWithUserAgent) }
+    private val user: UserService by lazy { UserServiceImpl(clientOptionsWithUserAgent) }
 
     override fun async(): StrezlessMusickNexusMetadataClientAsync = async
 
@@ -47,18 +47,18 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
     ): StrezlessMusickNexusMetadataClient =
         StrezlessMusickNexusMetadataClientImpl(clientOptions.toBuilder().apply(modifier).build())
 
-    override fun pets(): PetService = pets
+    override fun pet(): PetService = pet
 
     override fun store(): StoreService = store
 
-    override fun users(): UserService = users
+    override fun user(): UserService = user
 
     override fun close() = clientOptions.close()
 
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         StrezlessMusickNexusMetadataClient.WithRawResponse {
 
-        private val pets: PetService.WithRawResponse by lazy {
+        private val pet: PetService.WithRawResponse by lazy {
             PetServiceImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -66,7 +66,7 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
             StoreServiceImpl.WithRawResponseImpl(clientOptions)
         }
 
-        private val users: UserService.WithRawResponse by lazy {
+        private val user: UserService.WithRawResponse by lazy {
             UserServiceImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -77,10 +77,10 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
                 clientOptions.toBuilder().apply(modifier).build()
             )
 
-        override fun pets(): PetService.WithRawResponse = pets
+        override fun pet(): PetService.WithRawResponse = pet
 
         override fun store(): StoreService.WithRawResponse = store
 
-        override fun users(): UserService.WithRawResponse = users
+        override fun user(): UserService.WithRawResponse = user
     }
 }

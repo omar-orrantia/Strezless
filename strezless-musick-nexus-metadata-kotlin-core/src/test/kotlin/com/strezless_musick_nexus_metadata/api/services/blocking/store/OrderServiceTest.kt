@@ -4,7 +4,7 @@ package com.strezless_musick_nexus_metadata.api.services.blocking.store
 
 import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
-import com.strezless_musick_nexus_metadata.api.models.Order
+import com.strezless_musick_nexus_metadata.api.models.store.order.Order
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
@@ -21,7 +21,7 @@ internal class OrderServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val orderService = client.store().orders()
+        val orderService = client.store().order()
 
         val order =
             orderService.create(
@@ -46,7 +46,7 @@ internal class OrderServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val orderService = client.store().orders()
+        val orderService = client.store().order()
 
         val order = orderService.retrieve(0L)
 
@@ -61,7 +61,7 @@ internal class OrderServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val orderService = client.store().orders()
+        val orderService = client.store().order()
 
         orderService.delete(0L)
     }

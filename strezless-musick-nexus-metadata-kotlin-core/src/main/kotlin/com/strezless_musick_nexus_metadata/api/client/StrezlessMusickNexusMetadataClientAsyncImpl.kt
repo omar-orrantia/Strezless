@@ -31,13 +31,13 @@ class StrezlessMusickNexusMetadataClientAsyncImpl(private val clientOptions: Cli
         WithRawResponseImpl(clientOptions)
     }
 
-    private val pets: PetServiceAsync by lazy { PetServiceAsyncImpl(clientOptionsWithUserAgent) }
+    private val pet: PetServiceAsync by lazy { PetServiceAsyncImpl(clientOptionsWithUserAgent) }
 
     private val store: StoreServiceAsync by lazy {
         StoreServiceAsyncImpl(clientOptionsWithUserAgent)
     }
 
-    private val users: UserServiceAsync by lazy { UserServiceAsyncImpl(clientOptionsWithUserAgent) }
+    private val user: UserServiceAsync by lazy { UserServiceAsyncImpl(clientOptionsWithUserAgent) }
 
     override fun sync(): StrezlessMusickNexusMetadataClient = sync
 
@@ -51,18 +51,18 @@ class StrezlessMusickNexusMetadataClientAsyncImpl(private val clientOptions: Cli
             clientOptions.toBuilder().apply(modifier).build()
         )
 
-    override fun pets(): PetServiceAsync = pets
+    override fun pet(): PetServiceAsync = pet
 
     override fun store(): StoreServiceAsync = store
 
-    override fun users(): UserServiceAsync = users
+    override fun user(): UserServiceAsync = user
 
     override fun close() = clientOptions.close()
 
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         StrezlessMusickNexusMetadataClientAsync.WithRawResponse {
 
-        private val pets: PetServiceAsync.WithRawResponse by lazy {
+        private val pet: PetServiceAsync.WithRawResponse by lazy {
             PetServiceAsyncImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -70,7 +70,7 @@ class StrezlessMusickNexusMetadataClientAsyncImpl(private val clientOptions: Cli
             StoreServiceAsyncImpl.WithRawResponseImpl(clientOptions)
         }
 
-        private val users: UserServiceAsync.WithRawResponse by lazy {
+        private val user: UserServiceAsync.WithRawResponse by lazy {
             UserServiceAsyncImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -81,10 +81,10 @@ class StrezlessMusickNexusMetadataClientAsyncImpl(private val clientOptions: Cli
                 clientOptions.toBuilder().apply(modifier).build()
             )
 
-        override fun pets(): PetServiceAsync.WithRawResponse = pets
+        override fun pet(): PetServiceAsync.WithRawResponse = pet
 
         override fun store(): StoreServiceAsync.WithRawResponse = store
 
-        override fun users(): UserServiceAsync.WithRawResponse = users
+        override fun user(): UserServiceAsync.WithRawResponse = user
     }
 }

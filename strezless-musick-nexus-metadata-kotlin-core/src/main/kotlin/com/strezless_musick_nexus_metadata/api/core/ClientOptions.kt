@@ -355,10 +355,10 @@ private constructor(
          *
          * See this table for the available options:
          *
-         * |Setter   |System property                              |Environment variable                      |Required|Default value                          |
-         * |---------|---------------------------------------------|------------------------------------------|--------|---------------------------------------|
-         * |`apiKey` |`strezlessmusicknexusmetadata.petstoreApiKey`|`PETSTORE_API_KEY`                        |true    |-                                      |
-         * |`baseUrl`|`strezlessmusicknexusmetadata.baseUrl`       |`STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL`|true    |`"https://petstore3.swagger.io/api/v3"`|
+         * |Setter   |System property                       |Environment variable                      |Required|Default value                          |
+         * |---------|--------------------------------------|------------------------------------------|--------|---------------------------------------|
+         * |`apiKey` |`strezlessmusicknexusmetadata.apiKey` |`STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` |true    |-                                      |
+         * |`baseUrl`|`strezlessmusicknexusmetadata.baseUrl`|`STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL`|true    |`"https://petstore3.swagger.io/api/v3"`|
          *
          * System properties take precedence over environment variables.
          */
@@ -366,8 +366,8 @@ private constructor(
             (System.getProperty("strezlessmusicknexusmetadata.baseUrl")
                     ?: System.getenv("STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL"))
                 ?.let { baseUrl(it) }
-            (System.getProperty("strezlessmusicknexusmetadata.petstoreApiKey")
-                    ?: System.getenv("PETSTORE_API_KEY"))
+            (System.getProperty("strezlessmusicknexusmetadata.apiKey")
+                    ?: System.getenv("STREZLESS_MUSICK_NEXUS_METADATA_API_KEY"))
                 ?.let { apiKey(it) }
         }
 

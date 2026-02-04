@@ -26,14 +26,14 @@ class StoreServiceAsyncImpl internal constructor(private val clientOptions: Clie
         WithRawResponseImpl(clientOptions)
     }
 
-    private val orders: OrderServiceAsync by lazy { OrderServiceAsyncImpl(clientOptions) }
+    private val order: OrderServiceAsync by lazy { OrderServiceAsyncImpl(clientOptions) }
 
     override fun withRawResponse(): StoreServiceAsync.WithRawResponse = withRawResponse
 
     override fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreServiceAsync =
         StoreServiceAsyncImpl(clientOptions.toBuilder().apply(modifier).build())
 
-    override fun orders(): OrderServiceAsync = orders
+    override fun order(): OrderServiceAsync = order
 
     override suspend fun listInventory(
         params: StoreListInventoryParams,
@@ -48,7 +48,7 @@ class StoreServiceAsyncImpl internal constructor(private val clientOptions: Clie
         private val errorHandler: Handler<HttpResponse> =
             errorHandler(errorBodyHandler(clientOptions.jsonMapper))
 
-        private val orders: OrderServiceAsync.WithRawResponse by lazy {
+        private val order: OrderServiceAsync.WithRawResponse by lazy {
             OrderServiceAsyncImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -59,7 +59,7 @@ class StoreServiceAsyncImpl internal constructor(private val clientOptions: Clie
                 clientOptions.toBuilder().apply(modifier).build()
             )
 
-        override fun orders(): OrderServiceAsync.WithRawResponse = orders
+        override fun order(): OrderServiceAsync.WithRawResponse = order
 
         private val listInventoryHandler: Handler<StoreListInventoryResponse> =
             jsonHandler<StoreListInventoryResponse>(clientOptions.jsonMapper)

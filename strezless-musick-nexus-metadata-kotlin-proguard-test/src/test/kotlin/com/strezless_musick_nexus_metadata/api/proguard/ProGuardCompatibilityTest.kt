@@ -5,8 +5,7 @@ package com.strezless_musick_nexus_metadata.api.proguard
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 import com.strezless_musick_nexus_metadata.api.core.jsonMapper
-import com.strezless_musick_nexus_metadata.api.models.Order
-import java.time.OffsetDateTime
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.jvm.javaMethod
 import org.assertj.core.api.Assertions.assertThat
@@ -50,27 +49,27 @@ internal class ProGuardCompatibilityTest {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
 
         assertThat(client).isNotNull()
-        assertThat(client.pets()).isNotNull()
+        assertThat(client.pet()).isNotNull()
         assertThat(client.store()).isNotNull()
-        assertThat(client.users()).isNotNull()
+        assertThat(client.user()).isNotNull()
     }
 
     @Test
-    fun orderRoundtrip() {
+    fun petRoundtrip() {
         val jsonMapper = jsonMapper()
-        val order =
-            Order.builder()
+        val pet =
+            Pet.builder()
+                .name("doggie")
+                .addPhotoUrl("string")
                 .id(10L)
-                .complete(true)
-                .petId(198772L)
-                .quantity(7)
-                .shipDate(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
-                .status(Order.Status.APPROVED)
+                .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                .status(Pet.Status.AVAILABLE)
+                .addTag(Pet.Tag.builder().id(0L).name("name").build())
                 .build()
 
-        val roundtrippedOrder =
-            jsonMapper.readValue(jsonMapper.writeValueAsString(order), jacksonTypeRef<Order>())
+        val roundtrippedPet =
+            jsonMapper.readValue(jsonMapper.writeValueAsString(pet), jacksonTypeRef<Pet>())
 
-        assertThat(roundtrippedOrder).isEqualTo(order)
+        assertThat(roundtrippedPet).isEqualTo(pet)
     }
 }

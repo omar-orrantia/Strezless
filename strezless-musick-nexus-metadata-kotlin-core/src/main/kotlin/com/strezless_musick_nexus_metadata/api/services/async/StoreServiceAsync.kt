@@ -24,7 +24,7 @@ interface StoreServiceAsync {
      */
     fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreServiceAsync
 
-    fun orders(): OrderServiceAsync
+    fun order(): OrderServiceAsync
 
     /** Returns a map of status codes to quantities */
     suspend fun listInventory(
@@ -48,7 +48,7 @@ interface StoreServiceAsync {
             modifier: (ClientOptions.Builder) -> Unit
         ): StoreServiceAsync.WithRawResponse
 
-        fun orders(): OrderServiceAsync.WithRawResponse
+        fun order(): OrderServiceAsync.WithRawResponse
 
         /**
          * Returns a raw HTTP response for `get /store/inventory`, but is otherwise the same as

@@ -4,12 +4,11 @@ package com.strezless_musick_nexus_metadata.api.services.async
 
 import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
-import com.strezless_musick_nexus_metadata.api.models.pets.Category
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByStatusParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByTagsParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateByIdParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByTagsParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -25,7 +24,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val pet =
             petServiceAsync.create(
@@ -33,7 +32,7 @@ internal class PetServiceAsyncTest {
                     .name("doggie")
                     .addPhotoUrl("string")
                     .id(10L)
-                    .category(Category.builder().id(1L).name("Dogs").build())
+                    .category(Pet.Category.builder().id(1L).name("Dogs").build())
                     .status(Pet.Status.AVAILABLE)
                     .addTag(Pet.Tag.builder().id(0L).name("name").build())
                     .build()
@@ -50,7 +49,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val pet = petServiceAsync.retrieve(0L)
 
@@ -65,7 +64,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val pet =
             petServiceAsync.update(
@@ -73,7 +72,7 @@ internal class PetServiceAsyncTest {
                     .name("doggie")
                     .addPhotoUrl("string")
                     .id(10L)
-                    .category(Category.builder().id(1L).name("Dogs").build())
+                    .category(Pet.Category.builder().id(1L).name("Dogs").build())
                     .status(Pet.Status.AVAILABLE)
                     .addTag(Pet.Tag.builder().id(0L).name("name").build())
                     .build()
@@ -90,7 +89,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         petServiceAsync.delete(0L)
     }
@@ -103,7 +102,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val pets =
             petServiceAsync.findByStatus(
@@ -123,7 +122,7 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val pets =
             petServiceAsync.findByTags(PetFindByTagsParams.builder().addTag("string").build())
@@ -133,16 +132,16 @@ internal class PetServiceAsyncTest {
 
     @Disabled("Prism tests are disabled")
     @Test
-    suspend fun updateById() {
+    suspend fun updateWithForm() {
         val client =
             StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
-        petServiceAsync.updateById(
-            PetUpdateByIdParams.builder().petId(0L).name("name").status("status").build()
+        petServiceAsync.updateWithForm(
+            PetUpdateWithFormParams.builder().petId(0L).name("name").status("status").build()
         )
     }
 
@@ -154,14 +153,14 @@ internal class PetServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petServiceAsync = client.pets()
+        val petServiceAsync = client.pet()
 
         val response =
             petServiceAsync.uploadImage(
                 PetUploadImageParams.builder()
                     .petId(0L)
                     .additionalMetadata("additionalMetadata")
-                    .image("some content")
+                    .body("some content")
                     .build()
             )
 

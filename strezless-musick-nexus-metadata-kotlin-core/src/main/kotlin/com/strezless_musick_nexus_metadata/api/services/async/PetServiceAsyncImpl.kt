@@ -17,16 +17,16 @@ import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
 import com.strezless_musick_nexus_metadata.api.core.http.json
 import com.strezless_musick_nexus_metadata.api.core.http.parseable
 import com.strezless_musick_nexus_metadata.api.core.prepareAsync
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetCreateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetDeleteParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByStatusParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByTagsParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetRetrieveParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateByIdParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetDeleteParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByTagsParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetRetrieveParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageResponse
 
 class PetServiceAsyncImpl internal constructor(private val clientOptions: ClientOptions) :
     PetServiceAsync {
@@ -71,9 +71,12 @@ class PetServiceAsyncImpl internal constructor(private val clientOptions: Client
         // get /pet/findByTags
         withRawResponse().findByTags(params, requestOptions).parse()
 
-    override suspend fun updateById(params: PetUpdateByIdParams, requestOptions: RequestOptions) {
+    override suspend fun updateWithForm(
+        params: PetUpdateWithFormParams,
+        requestOptions: RequestOptions,
+    ) {
         // post /pet/{petId}
-        withRawResponse().updateById(params, requestOptions)
+        withRawResponse().updateWithForm(params, requestOptions)
     }
 
     override suspend fun uploadImage(
@@ -257,10 +260,10 @@ class PetServiceAsyncImpl internal constructor(private val clientOptions: Client
             }
         }
 
-        private val updateByIdHandler: Handler<Void?> = emptyHandler()
+        private val updateWithFormHandler: Handler<Void?> = emptyHandler()
 
-        override suspend fun updateById(
-            params: PetUpdateByIdParams,
+        override suspend fun updateWithForm(
+            params: PetUpdateWithFormParams,
             requestOptions: RequestOptions,
         ): HttpResponse {
             // We check here instead of in the params builder because this can be specified
@@ -277,7 +280,7 @@ class PetServiceAsyncImpl internal constructor(private val clientOptions: Client
             val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
             val response = clientOptions.httpClient.executeAsync(request, requestOptions)
             return errorHandler.handle(response).parseable {
-                response.use { updateByIdHandler.handle(it) }
+                response.use { updateWithFormHandler.handle(it) }
             }
         }
 
@@ -291,7 +294,7 @@ class PetServiceAsyncImpl internal constructor(private val clientOptions: Client
             // We check here instead of in the params builder because this can be specified
             // positionally or in the params class.
             checkRequired("petId", params.petId())
-            checkRequired("image", params._body())
+            checkRequired("body", params._body())
             val request =
                 HttpRequest.builder()
                     .method(HttpMethod.POST)

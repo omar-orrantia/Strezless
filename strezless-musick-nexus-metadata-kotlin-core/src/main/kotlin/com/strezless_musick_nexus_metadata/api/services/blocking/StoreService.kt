@@ -24,7 +24,7 @@ interface StoreService {
      */
     fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreService
 
-    fun orders(): OrderService
+    fun order(): OrderService
 
     /** Returns a map of status codes to quantities */
     fun listInventory(
@@ -46,7 +46,7 @@ interface StoreService {
          */
         fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreService.WithRawResponse
 
-        fun orders(): OrderService.WithRawResponse
+        fun order(): OrderService.WithRawResponse
 
         /**
          * Returns a raw HTTP response for `get /store/inventory`, but is otherwise the same as

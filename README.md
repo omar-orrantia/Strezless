@@ -1,25 +1,15 @@
 # Strezless Musick Nexus Metadata Kotlin API Library
 
-<!-- x-release-please-start-version -->
-
 [![Maven Central](https://img.shields.io/maven-central/v/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin)](https://central.sonatype.com/artifact/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1)
 [![javadoc](https://javadoc.io/badge2/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1)
-
-<!-- x-release-please-end -->
 
 The Strezless Musick Nexus Metadata Kotlin SDK provides convenient access to the Strezless Musick Nexus Metadata REST API from applications written in Kotlin.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
-<!-- x-release-please-start-version -->
-
 KDocs are available on [javadoc.io](https://javadoc.io/doc/com.strezless_musick_nexus_metadata.api/strezless-musick-nexus-metadata-kotlin/0.0.1).
 
-<!-- x-release-please-end -->
-
 ## Installation
-
-<!-- x-release-please-start-version -->
 
 ### Gradle
 
@@ -37,8 +27,6 @@ implementation("com.strezless_musick_nexus_metadata.api:strezless-musick-nexus-m
 </dependency>
 ```
 
-<!-- x-release-please-end -->
-
 ## Requirements
 
 This library requires Java 8 or later.
@@ -48,14 +36,18 @@ This library requires Java 8 or later.
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetadataClient
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
-import com.strezless_musick_nexus_metadata.api.models.Order
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-// Configures using the `strezlessmusicknexusmetadata.petstoreApiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
-// Or configures using the `PETSTORE_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
+// Configures using the `strezlessmusicknexusmetadata.apiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
+// Or configures using the `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
 val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkHttpClient.fromEnv()
 
-val order: Order = client.store().orders().create()
+val params: Pet = Pet.builder()
+    .name("doggie")
+    .addPhotoUrl("string")
+    .build()
+val pet: Pet = client.pet().update(params)
 ```
 
 ## Client configuration
@@ -66,8 +58,8 @@ Configure the client using system properties or environment variables:
 import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetadataClient
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 
-// Configures using the `strezlessmusicknexusmetadata.petstoreApiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
-// Or configures using the `PETSTORE_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
+// Configures using the `strezlessmusicknexusmetadata.apiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
+// Or configures using the `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
 val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkHttpClient.fromEnv()
 ```
 
@@ -89,8 +81,8 @@ import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetada
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 
 val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkHttpClient.builder()
-    // Configures using the `strezlessmusicknexusmetadata.petstoreApiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
-    // Or configures using the `PETSTORE_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
+    // Configures using the `strezlessmusicknexusmetadata.apiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
+    // Or configures using the `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build()
@@ -98,10 +90,10 @@ val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkH
 
 See this table for the available options:
 
-| Setter    | System property                               | Environment variable                       | Required | Default value                           |
-| --------- | --------------------------------------------- | ------------------------------------------ | -------- | --------------------------------------- |
-| `apiKey`  | `strezlessmusicknexusmetadata.petstoreApiKey` | `PETSTORE_API_KEY`                         | true     | -                                       |
-| `baseUrl` | `strezlessmusicknexusmetadata.baseUrl`        | `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` | true     | `"https://petstore3.swagger.io/api/v3"` |
+| Setter    | System property                        | Environment variable                       | Required | Default value                           |
+| --------- | -------------------------------------- | ------------------------------------------ | -------- | --------------------------------------- |
+| `apiKey`  | `strezlessmusicknexusmetadata.apiKey`  | `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY`  | true     | -                                       |
+| `baseUrl` | `strezlessmusicknexusmetadata.baseUrl` | `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` | true     | `"https://petstore3.swagger.io/api/v3"` |
 
 System properties take precedence over environment variables.
 
@@ -128,7 +120,7 @@ The `withOptions()` method does not affect the original client or service.
 
 To send a request to the Strezless Musick Nexus Metadata API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a Kotlin class.
 
-For example, `client.store().orders().create(...)` should be called with an instance of `OrderCreateParams`, and it will return an instance of `Order`.
+For example, `client.pet().update(...)` should be called with an instance of `PetUpdateParams`, and it will return an instance of `Pet`.
 
 ## Immutability
 
@@ -145,14 +137,18 @@ The default client is synchronous. To switch to asynchronous execution, call the
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetadataClient
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
-import com.strezless_musick_nexus_metadata.api.models.Order
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-// Configures using the `strezlessmusicknexusmetadata.petstoreApiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
-// Or configures using the `PETSTORE_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
+// Configures using the `strezlessmusicknexusmetadata.apiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
+// Or configures using the `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
 val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkHttpClient.fromEnv()
 
-val order: Order = client.async().store().orders().create()
+val params: Pet = Pet.builder()
+    .name("doggie")
+    .addPhotoUrl("string")
+    .build()
+val pet: Pet = client.async().pet().update(params)
 ```
 
 Or create an asynchronous client from the beginning:
@@ -160,14 +156,18 @@ Or create an asynchronous client from the beginning:
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetadataClientAsync
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
-import com.strezless_musick_nexus_metadata.api.models.Order
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-// Configures using the `strezlessmusicknexusmetadata.petstoreApiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
-// Or configures using the `PETSTORE_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
+// Configures using the `strezlessmusicknexusmetadata.apiKey` and `strezlessmusicknexusmetadata.baseUrl` system properties
+// Or configures using the `STREZLESS_MUSICK_NEXUS_METADATA_API_KEY` and `STREZLESS_MUSICK_NEXUS_METADATA_BASE_URL` environment variables
 val client: StrezlessMusickNexusMetadataClientAsync = StrezlessMusickNexusMetadataOkHttpClientAsync.fromEnv()
 
-val order: Order = client.store().orders().create()
+val params: Pet = Pet.builder()
+    .name("doggie")
+    .addPhotoUrl("string")
+    .build()
+val pet: Pet = client.pet().update(params)
 ```
 
 The asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).
@@ -181,21 +181,25 @@ To access this data, prefix any HTTP method call on a client or service with `wi
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.core.http.Headers
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
-import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryParams
-import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-val response: HttpResponseFor<StoreListInventoryResponse> = client.store().withRawResponse().listInventory()
+val params: Pet = Pet.builder()
+    .name("doggie")
+    .addPhotoUrl("string")
+    .build()
+val pet: HttpResponseFor<Pet> = client.pet().withRawResponse().update(params)
 
-val statusCode: Int = response.statusCode()
-val headers: Headers = response.headers()
+val statusCode: Int = pet.statusCode()
+val headers: Headers = pet.headers()
 ```
 
 You can still deserialize the response into an instance of a Kotlin class if needed:
 
 ```kotlin
-import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 
-val parsedResponse: StoreListInventoryResponse = response.parse()
+val parsedPet: Pet = pet.parse()
 ```
 
 ## Error handling
@@ -293,9 +297,11 @@ Requests time out after 1 minute by default.
 To set a custom timeout, configure the method call using the `timeout` method:
 
 ```kotlin
-import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 
-val response: StoreListInventoryResponse = client.store().listInventory(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())
+val pet: Pet = client.pet().update(
+  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()
+)
 ```
 
 Or configure the default for all method calls at the client level:
@@ -398,9 +404,9 @@ To set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQu
 
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.core.JsonValue
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-val params: OrderCreateParams = OrderCreateParams.builder()
+val params: PetUpdateParams = PetUpdateParams.builder()
     .putAdditionalHeader("Secret-Header", "42")
     .putAdditionalQueryParam("secret_query_param", "42")
     .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))
@@ -412,9 +418,15 @@ These can be accessed on the built object later using the `_additionalHeaders()`
 To set a documented parameter or property to an undocumented or not yet supported _value_, pass a [`JsonValue`](strezless-musick-nexus-metadata-kotlin-core/src/main/kotlin/com/strezless_musick_nexus_metadata/api/core/Values.kt) object to its setter:
 
 ```kotlin
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-val params: OrderCreateParams = OrderCreateParams.builder().build()
+val params: PetUpdateParams = PetUpdateParams.builder()
+    .pet(Pet.builder()
+        .name("doggie")
+        .addPhotoUrl("string")
+        .build())
+    .build()
 ```
 
 The most straightforward way to create a [`JsonValue`](strezless-musick-nexus-metadata-kotlin-core/src/main/kotlin/com/strezless_musick_nexus_metadata/api/core/Values.kt) is using its `from(...)` method:
@@ -458,11 +470,10 @@ To forcibly omit a required parameter or property, pass [`JsonMissing`](strezles
 
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.core.JsonMissing
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetCreateParams
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
 
-val params: OrderCreateParams = PetCreateParams.builder()
+val params: PetUpdateParams = PetUpdateParams.builder()
     .pet(Pet.builder()
         .name("doggie")
         .addPhotoUrl("string")
@@ -481,7 +492,7 @@ import com.strezless_musick_nexus_metadata.api.core.JsonNull
 import com.strezless_musick_nexus_metadata.api.core.JsonNumber
 import com.strezless_musick_nexus_metadata.api.core.JsonValue
 
-val additionalProperties: Map<String, JsonValue> = client.store().orders().create(params)._additionalProperties()
+val additionalProperties: Map<String, JsonValue> = client.pet().update(params)._additionalProperties()
 val secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")
 
 val result = when (secretPropertyValue) {
@@ -498,7 +509,7 @@ To access a property's raw JSON value, which may be undocumented, call its `_` p
 ```kotlin
 import com.strezless_musick_nexus_metadata.api.core.JsonField
 
-val field: JsonField<Any> = client.store().orders().create(params)._field()
+val field: JsonField<Any> = client.pet().update(params)._field()
 
 if (field.isMissing()) {
   // The property is absent from the JSON response
@@ -523,17 +534,19 @@ By default, the SDK will not throw an exception in this case. It will throw [`St
 If you would prefer to check that the response is completely well-typed upfront, then either call `validate()`:
 
 ```kotlin
-import com.strezless_musick_nexus_metadata.api.models.Order
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 
-val order: Order = client.store().orders().create(params).validate()
+val pet: Pet = client.pet().update(params).validate()
 ```
 
 Or configure the method call to validate the response using the `responseValidation` method:
 
 ```kotlin
-import com.strezless_musick_nexus_metadata.api.models.Order
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 
-val order: Order = client.store().orders().create(RequestOptions.builder().responseValidation(true).build())
+val pet: Pet = client.pet().update(
+  params, RequestOptions.builder().responseValidation(true).build()
+)
 ```
 
 Or configure the default for all method calls at the client level:
@@ -586,4 +599,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/omar-orrantia/kotlin-metadata/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/strezless-musick-nexus-metadata-kotlin/issues) with questions, bugs, or suggestions.

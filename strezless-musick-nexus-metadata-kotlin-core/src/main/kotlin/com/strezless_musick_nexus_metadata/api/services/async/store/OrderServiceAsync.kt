@@ -7,10 +7,10 @@ import com.strezless_musick_nexus_metadata.api.core.ClientOptions
 import com.strezless_musick_nexus_metadata.api.core.RequestOptions
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponse
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
-import com.strezless_musick_nexus_metadata.api.models.Order
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderCreateParams
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderDeleteParams
-import com.strezless_musick_nexus_metadata.api.models.store.orders.OrderRetrieveParams
+import com.strezless_musick_nexus_metadata.api.models.store.order.Order
+import com.strezless_musick_nexus_metadata.api.models.store.order.OrderCreateParams
+import com.strezless_musick_nexus_metadata.api.models.store.order.OrderDeleteParams
+import com.strezless_musick_nexus_metadata.api.models.store.order.OrderRetrieveParams
 
 interface OrderServiceAsync {
 

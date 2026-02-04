@@ -43,11 +43,11 @@ interface StrezlessMusickNexusMetadataClient {
      */
     fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StrezlessMusickNexusMetadataClient
 
-    fun pets(): PetService
+    fun pet(): PetService
 
     fun store(): StoreService
 
-    fun users(): UserService
+    fun user(): UserService
 
     /**
      * Closes this client, relinquishing any underlying resources.
@@ -77,10 +77,10 @@ interface StrezlessMusickNexusMetadataClient {
             modifier: (ClientOptions.Builder) -> Unit
         ): StrezlessMusickNexusMetadataClient.WithRawResponse
 
-        fun pets(): PetService.WithRawResponse
+        fun pet(): PetService.WithRawResponse
 
         fun store(): StoreService.WithRawResponse
 
-        fun users(): UserService.WithRawResponse
+        fun user(): UserService.WithRawResponse
     }
 }

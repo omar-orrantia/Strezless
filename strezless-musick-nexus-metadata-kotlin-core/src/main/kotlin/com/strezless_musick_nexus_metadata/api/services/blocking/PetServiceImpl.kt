@@ -17,16 +17,16 @@ import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
 import com.strezless_musick_nexus_metadata.api.core.http.json
 import com.strezless_musick_nexus_metadata.api.core.http.parseable
 import com.strezless_musick_nexus_metadata.api.core.prepare
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetCreateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetDeleteParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByStatusParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByTagsParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetRetrieveParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateByIdParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetDeleteParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByTagsParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetRetrieveParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageResponse
 
 class PetServiceImpl internal constructor(private val clientOptions: ClientOptions) : PetService {
 
@@ -70,9 +70,9 @@ class PetServiceImpl internal constructor(private val clientOptions: ClientOptio
         // get /pet/findByTags
         withRawResponse().findByTags(params, requestOptions).parse()
 
-    override fun updateById(params: PetUpdateByIdParams, requestOptions: RequestOptions) {
+    override fun updateWithForm(params: PetUpdateWithFormParams, requestOptions: RequestOptions) {
         // post /pet/{petId}
-        withRawResponse().updateById(params, requestOptions)
+        withRawResponse().updateWithForm(params, requestOptions)
     }
 
     override fun uploadImage(
@@ -251,10 +251,10 @@ class PetServiceImpl internal constructor(private val clientOptions: ClientOptio
             }
         }
 
-        private val updateByIdHandler: Handler<Void?> = emptyHandler()
+        private val updateWithFormHandler: Handler<Void?> = emptyHandler()
 
-        override fun updateById(
-            params: PetUpdateByIdParams,
+        override fun updateWithForm(
+            params: PetUpdateWithFormParams,
             requestOptions: RequestOptions,
         ): HttpResponse {
             // We check here instead of in the params builder because this can be specified
@@ -271,7 +271,7 @@ class PetServiceImpl internal constructor(private val clientOptions: ClientOptio
             val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
             val response = clientOptions.httpClient.execute(request, requestOptions)
             return errorHandler.handle(response).parseable {
-                response.use { updateByIdHandler.handle(it) }
+                response.use { updateWithFormHandler.handle(it) }
             }
         }
 
@@ -285,7 +285,7 @@ class PetServiceImpl internal constructor(private val clientOptions: ClientOptio
             // We check here instead of in the params builder because this can be specified
             // positionally or in the params class.
             checkRequired("petId", params.petId())
-            checkRequired("image", params._body())
+            checkRequired("body", params._body())
             val request =
                 HttpRequest.builder()
                     .method(HttpMethod.POST)

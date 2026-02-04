@@ -4,10 +4,10 @@ package com.strezless_musick_nexus_metadata.api.services.async
 
 import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
-import com.strezless_musick_nexus_metadata.api.models.users.User
-import com.strezless_musick_nexus_metadata.api.models.users.UserCreateWithListParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserLoginParams
-import com.strezless_musick_nexus_metadata.api.models.users.UserUpdateParams
+import com.strezless_musick_nexus_metadata.api.models.user.User
+import com.strezless_musick_nexus_metadata.api.models.user.UserCreateWithListParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserLoginParams
+import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,7 +23,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         val user =
             userServiceAsync.create(
@@ -50,7 +50,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         val user = userServiceAsync.retrieve("username")
 
@@ -65,7 +65,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         userServiceAsync.update(
             UserUpdateParams.builder()
@@ -94,7 +94,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         userServiceAsync.delete("username")
     }
@@ -107,12 +107,12 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         val user =
             userServiceAsync.createWithList(
                 UserCreateWithListParams.builder()
-                    .addItem(
+                    .addBody(
                         User.builder()
                             .id(10L)
                             .email("john@email.com")
@@ -138,7 +138,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         userServiceAsync.login(
             UserLoginParams.builder().password("password").username("username").build()
@@ -153,7 +153,7 @@ internal class UserServiceAsyncTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val userServiceAsync = client.users()
+        val userServiceAsync = client.user()
 
         userServiceAsync.logout()
     }

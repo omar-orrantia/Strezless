@@ -3,7 +3,7 @@
 package com.strezless_musick_nexus_metadata.api.services
 
 import com.github.tomakehurst.wiremock.client.WireMock.anyUrl
-import com.github.tomakehurst.wiremock.client.WireMock.get
+import com.github.tomakehurst.wiremock.client.WireMock.put
 import com.github.tomakehurst.wiremock.client.WireMock.status
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo
@@ -22,6 +22,7 @@ import com.strezless_musick_nexus_metadata.api.errors.StrezlessMusickNexusMetada
 import com.strezless_musick_nexus_metadata.api.errors.UnauthorizedException
 import com.strezless_musick_nexus_metadata.api.errors.UnexpectedStatusCodeException
 import com.strezless_musick_nexus_metadata.api.errors.UnprocessableEntityException
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.entry
 import org.junit.jupiter.api.BeforeEach
@@ -58,16 +59,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory400() {
-        val storeService = client.store()
+    fun petUpdate400() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(400).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<BadRequestException> { storeService.listInventory() }
+        val e =
+            assertThrows<BadRequestException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(400)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -75,16 +88,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory400WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate400WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(400).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<BadRequestException> { storeService.listInventory() }
+        val e =
+            assertThrows<BadRequestException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(400)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -92,16 +117,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory401() {
-        val storeService = client.store()
+    fun petUpdate401() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(401).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnauthorizedException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnauthorizedException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(401)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -109,16 +146,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory401WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate401WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(401).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnauthorizedException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnauthorizedException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(401)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -126,16 +175,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory403() {
-        val storeService = client.store()
+    fun petUpdate403() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(403).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<PermissionDeniedException> { storeService.listInventory() }
+        val e =
+            assertThrows<PermissionDeniedException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(403)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -143,16 +204,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory403WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate403WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(403).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<PermissionDeniedException> { storeService.listInventory() }
+        val e =
+            assertThrows<PermissionDeniedException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(403)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -160,16 +233,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory404() {
-        val storeService = client.store()
+    fun petUpdate404() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(404).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<NotFoundException> { storeService.listInventory() }
+        val e =
+            assertThrows<NotFoundException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(404)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -177,16 +262,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory404WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate404WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(404).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<NotFoundException> { storeService.listInventory() }
+        val e =
+            assertThrows<NotFoundException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(404)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -194,16 +291,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory422() {
-        val storeService = client.store()
+    fun petUpdate422() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(422).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnprocessableEntityException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnprocessableEntityException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(422)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -211,16 +320,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory422WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate422WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(422).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnprocessableEntityException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnprocessableEntityException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(422)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -228,16 +349,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory429() {
-        val storeService = client.store()
+    fun petUpdate429() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(429).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<RateLimitException> { storeService.listInventory() }
+        val e =
+            assertThrows<RateLimitException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(429)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -245,16 +378,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory429WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate429WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(429).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<RateLimitException> { storeService.listInventory() }
+        val e =
+            assertThrows<RateLimitException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(429)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -262,16 +407,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory500() {
-        val storeService = client.store()
+    fun petUpdate500() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(500).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<InternalServerException> { storeService.listInventory() }
+        val e =
+            assertThrows<InternalServerException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(500)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -279,16 +436,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory500WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate500WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(500).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<InternalServerException> { storeService.listInventory() }
+        val e =
+            assertThrows<InternalServerException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(500)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -296,16 +465,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory999() {
-        val storeService = client.store()
+    fun petUpdate999() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(999).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnexpectedStatusCodeException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnexpectedStatusCodeException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(999)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -313,16 +494,28 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventory999WithRawResponse() {
-        val storeService = client.store().withRawResponse()
+    fun petUpdate999WithRawResponse() {
+        val petService = client.pet().withRawResponse()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(
                     status(999).withHeader(HEADER_NAME, HEADER_VALUE).withBody(ERROR_JSON_BYTES)
                 )
         )
 
-        val e = assertThrows<UnexpectedStatusCodeException> { storeService.listInventory() }
+        val e =
+            assertThrows<UnexpectedStatusCodeException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(999)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -330,14 +523,26 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun storeListInventoryInvalidJsonBody() {
-        val storeService = client.store()
+    fun petUpdateInvalidJsonBody() {
+        val petService = client.pet()
         stubFor(
-            get(anyUrl())
+            put(anyUrl())
                 .willReturn(status(200).withHeader(HEADER_NAME, HEADER_VALUE).withBody(NOT_JSON))
         )
 
-        val e = assertThrows<StrezlessMusickNexusMetadataException> { storeService.listInventory() }
+        val e =
+            assertThrows<StrezlessMusickNexusMetadataException> {
+                petService.update(
+                    Pet.builder()
+                        .name("doggie")
+                        .addPhotoUrl("string")
+                        .id(10L)
+                        .category(Pet.Category.builder().id(1L).name("Dogs").build())
+                        .status(Pet.Status.AVAILABLE)
+                        .addTag(Pet.Tag.builder().id(0L).name("name").build())
+                        .build()
+                )
+            }
 
         assertThat(e).hasMessage("Error reading response")
     }

@@ -7,16 +7,16 @@ import com.strezless_musick_nexus_metadata.api.core.ClientOptions
 import com.strezless_musick_nexus_metadata.api.core.RequestOptions
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponse
 import com.strezless_musick_nexus_metadata.api.core.http.HttpResponseFor
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetCreateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetDeleteParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByStatusParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByTagsParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetRetrieveParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateByIdParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageResponse
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetCreateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetDeleteParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByTagsParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetRetrieveParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageResponse
 
 interface PetServiceAsync {
 
@@ -109,30 +109,30 @@ interface PetServiceAsync {
         findByTags(PetFindByTagsParams.none(), requestOptions)
 
     /** Updates a pet in the store with form data */
-    suspend fun updateById(
+    suspend fun updateWithForm(
         petId: Long,
-        params: PetUpdateByIdParams = PetUpdateByIdParams.none(),
+        params: PetUpdateWithFormParams = PetUpdateWithFormParams.none(),
         requestOptions: RequestOptions = RequestOptions.none(),
-    ) = updateById(params.toBuilder().petId(petId).build(), requestOptions)
+    ) = updateWithForm(params.toBuilder().petId(petId).build(), requestOptions)
 
-    /** @see updateById */
-    suspend fun updateById(
-        params: PetUpdateByIdParams,
+    /** @see updateWithForm */
+    suspend fun updateWithForm(
+        params: PetUpdateWithFormParams,
         requestOptions: RequestOptions = RequestOptions.none(),
     )
 
-    /** @see updateById */
-    suspend fun updateById(petId: Long, requestOptions: RequestOptions) =
-        updateById(petId, PetUpdateByIdParams.none(), requestOptions)
+    /** @see updateWithForm */
+    suspend fun updateWithForm(petId: Long, requestOptions: RequestOptions) =
+        updateWithForm(petId, PetUpdateWithFormParams.none(), requestOptions)
 
     /** uploads an image */
     suspend fun uploadImage(
         petId: Long,
-        image: String,
+        body: String,
         params: PetUploadImageParams = PetUploadImageParams.none(),
         requestOptions: RequestOptions = RequestOptions.none(),
     ): PetUploadImageResponse =
-        uploadImage(params.toBuilder().petId(petId).image(image).build(), requestOptions)
+        uploadImage(params.toBuilder().petId(petId).body(body).build(), requestOptions)
 
     /** @see uploadImage */
     suspend fun uploadImage(
@@ -143,10 +143,10 @@ interface PetServiceAsync {
     /** @see uploadImage */
     suspend fun uploadImage(
         petId: Long,
-        image: String,
+        body: String,
         requestOptions: RequestOptions,
     ): PetUploadImageResponse =
-        uploadImage(petId, image, PetUploadImageParams.none(), requestOptions)
+        uploadImage(petId, body, PetUploadImageParams.none(), requestOptions)
 
     /** A view of [PetServiceAsync] that provides access to raw HTTP responses for each method. */
     interface WithRawResponse {
@@ -270,26 +270,26 @@ interface PetServiceAsync {
 
         /**
          * Returns a raw HTTP response for `post /pet/{petId}`, but is otherwise the same as
-         * [PetServiceAsync.updateById].
+         * [PetServiceAsync.updateWithForm].
          */
         @MustBeClosed
-        suspend fun updateById(
+        suspend fun updateWithForm(
             petId: Long,
-            params: PetUpdateByIdParams = PetUpdateByIdParams.none(),
+            params: PetUpdateWithFormParams = PetUpdateWithFormParams.none(),
             requestOptions: RequestOptions = RequestOptions.none(),
-        ): HttpResponse = updateById(params.toBuilder().petId(petId).build(), requestOptions)
+        ): HttpResponse = updateWithForm(params.toBuilder().petId(petId).build(), requestOptions)
 
-        /** @see updateById */
+        /** @see updateWithForm */
         @MustBeClosed
-        suspend fun updateById(
-            params: PetUpdateByIdParams,
+        suspend fun updateWithForm(
+            params: PetUpdateWithFormParams,
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponse
 
-        /** @see updateById */
+        /** @see updateWithForm */
         @MustBeClosed
-        suspend fun updateById(petId: Long, requestOptions: RequestOptions): HttpResponse =
-            updateById(petId, PetUpdateByIdParams.none(), requestOptions)
+        suspend fun updateWithForm(petId: Long, requestOptions: RequestOptions): HttpResponse =
+            updateWithForm(petId, PetUpdateWithFormParams.none(), requestOptions)
 
         /**
          * Returns a raw HTTP response for `post /pet/{petId}/uploadImage`, but is otherwise the
@@ -298,11 +298,11 @@ interface PetServiceAsync {
         @MustBeClosed
         suspend fun uploadImage(
             petId: Long,
-            image: String,
+            body: String,
             params: PetUploadImageParams = PetUploadImageParams.none(),
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<PetUploadImageResponse> =
-            uploadImage(params.toBuilder().petId(petId).image(image).build(), requestOptions)
+            uploadImage(params.toBuilder().petId(petId).body(body).build(), requestOptions)
 
         /** @see uploadImage */
         @MustBeClosed
@@ -315,9 +315,9 @@ interface PetServiceAsync {
         @MustBeClosed
         suspend fun uploadImage(
             petId: Long,
-            image: String,
+            body: String,
             requestOptions: RequestOptions,
         ): HttpResponseFor<PetUploadImageResponse> =
-            uploadImage(petId, image, PetUploadImageParams.none(), requestOptions)
+            uploadImage(petId, body, PetUploadImageParams.none(), requestOptions)
     }
 }

@@ -4,12 +4,11 @@ package com.strezless_musick_nexus_metadata.api.services.blocking
 
 import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
-import com.strezless_musick_nexus_metadata.api.models.pets.Category
-import com.strezless_musick_nexus_metadata.api.models.pets.Pet
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByStatusParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetFindByTagsParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUpdateByIdParams
-import com.strezless_musick_nexus_metadata.api.models.pets.PetUploadImageParams
+import com.strezless_musick_nexus_metadata.api.models.pet.Pet
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByTagsParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParams
+import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -25,7 +24,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val pet =
             petService.create(
@@ -33,7 +32,7 @@ internal class PetServiceTest {
                     .name("doggie")
                     .addPhotoUrl("string")
                     .id(10L)
-                    .category(Category.builder().id(1L).name("Dogs").build())
+                    .category(Pet.Category.builder().id(1L).name("Dogs").build())
                     .status(Pet.Status.AVAILABLE)
                     .addTag(Pet.Tag.builder().id(0L).name("name").build())
                     .build()
@@ -50,7 +49,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val pet = petService.retrieve(0L)
 
@@ -65,7 +64,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val pet =
             petService.update(
@@ -73,7 +72,7 @@ internal class PetServiceTest {
                     .name("doggie")
                     .addPhotoUrl("string")
                     .id(10L)
-                    .category(Category.builder().id(1L).name("Dogs").build())
+                    .category(Pet.Category.builder().id(1L).name("Dogs").build())
                     .status(Pet.Status.AVAILABLE)
                     .addTag(Pet.Tag.builder().id(0L).name("name").build())
                     .build()
@@ -90,7 +89,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         petService.delete(0L)
     }
@@ -103,7 +102,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val pets =
             petService.findByStatus(
@@ -123,7 +122,7 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val pets = petService.findByTags(PetFindByTagsParams.builder().addTag("string").build())
 
@@ -132,16 +131,16 @@ internal class PetServiceTest {
 
     @Disabled("Prism tests are disabled")
     @Test
-    fun updateById() {
+    fun updateWithForm() {
         val client =
             StrezlessMusickNexusMetadataOkHttpClient.builder()
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
-        petService.updateById(
-            PetUpdateByIdParams.builder().petId(0L).name("name").status("status").build()
+        petService.updateWithForm(
+            PetUpdateWithFormParams.builder().petId(0L).name("name").status("status").build()
         )
     }
 
@@ -153,14 +152,14 @@ internal class PetServiceTest {
                 .baseUrl(TestServerExtension.BASE_URL)
                 .apiKey("My API Key")
                 .build()
-        val petService = client.pets()
+        val petService = client.pet()
 
         val response =
             petService.uploadImage(
                 PetUploadImageParams.builder()
                     .petId(0L)
                     .additionalMetadata("additionalMetadata")
-                    .image("some content")
+                    .body("some content")
                     .build()
             )
 

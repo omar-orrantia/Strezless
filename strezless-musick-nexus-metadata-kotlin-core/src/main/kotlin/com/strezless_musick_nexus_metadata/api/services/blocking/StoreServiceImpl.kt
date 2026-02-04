@@ -26,14 +26,14 @@ class StoreServiceImpl internal constructor(private val clientOptions: ClientOpt
         WithRawResponseImpl(clientOptions)
     }
 
-    private val orders: OrderService by lazy { OrderServiceImpl(clientOptions) }
+    private val order: OrderService by lazy { OrderServiceImpl(clientOptions) }
 
     override fun withRawResponse(): StoreService.WithRawResponse = withRawResponse
 
     override fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreService =
         StoreServiceImpl(clientOptions.toBuilder().apply(modifier).build())
 
-    override fun orders(): OrderService = orders
+    override fun order(): OrderService = order
 
     override fun listInventory(
         params: StoreListInventoryParams,
@@ -48,7 +48,7 @@ class StoreServiceImpl internal constructor(private val clientOptions: ClientOpt
         private val errorHandler: Handler<HttpResponse> =
             errorHandler(errorBodyHandler(clientOptions.jsonMapper))
 
-        private val orders: OrderService.WithRawResponse by lazy {
+        private val order: OrderService.WithRawResponse by lazy {
             OrderServiceImpl.WithRawResponseImpl(clientOptions)
         }
 
@@ -57,7 +57,7 @@ class StoreServiceImpl internal constructor(private val clientOptions: ClientOpt
         ): StoreService.WithRawResponse =
             StoreServiceImpl.WithRawResponseImpl(clientOptions.toBuilder().apply(modifier).build())
 
-        override fun orders(): OrderService.WithRawResponse = orders
+        override fun order(): OrderService.WithRawResponse = order
 
         private val listInventoryHandler: Handler<StoreListInventoryResponse> =
             jsonHandler<StoreListInventoryResponse>(clientOptions.jsonMapper)
