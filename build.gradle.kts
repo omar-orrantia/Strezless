@@ -9,7 +9,7 @@ repositories {
 
 allprojects {
     group = "com.strezless_musick_nexus_metadata.api"
-    version = "0.0.1"
+    version = "0.0.1" // x-release-please-version
 }
 
 subprojects {
