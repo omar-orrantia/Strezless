@@ -2,7 +2,7 @@ name: Release Doctor
 on:
   pull_request:
     branches:
-      - main
+      - Sin-Estres-dev-patch-2
   workflow_dispatch:
 
 jobs:
