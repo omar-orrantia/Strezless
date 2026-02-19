@@ -358,6 +358,25 @@ val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkH
     .build()
 ```
 
+### Connection pooling
+
+To customize the underlying OkHttp connection pool, configure the client using the `maxIdleConnections` and `keepAliveDuration` methods:
+
+```kotlin
+import com.strezless_musick_nexus_metadata.api.client.StrezlessMusickNexusMetadataClient
+import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
+import java.time.Duration
+
+val client: StrezlessMusickNexusMetadataClient = StrezlessMusickNexusMetadataOkHttpClient.builder()
+    .fromEnv()
+    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.
+    .maxIdleConnections(10)
+    .keepAliveDuration(Duration.ofMinutes(2))
+    .build()
+```
+
+If both options are unset, OkHttp's default connection pool settings are used.
+
 ### HTTPS
 
 > [!NOTE]
