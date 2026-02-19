@@ -102,6 +102,12 @@ interface UserServiceAsync {
     ): User
 
     /** @see createWithList */
+    suspend fun createWithList(
+        body: List<User>,
+        requestOptions: RequestOptions = RequestOptions.none(),
+    ): User = createWithList(UserCreateWithListParams.builder().body(body).build(), requestOptions)
+
+    /** @see createWithList */
     suspend fun createWithList(requestOptions: RequestOptions): User =
         createWithList(UserCreateWithListParams.none(), requestOptions)
 
@@ -240,6 +246,14 @@ interface UserServiceAsync {
             params: UserCreateWithListParams = UserCreateWithListParams.none(),
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<User>
+
+        /** @see createWithList */
+        @MustBeClosed
+        suspend fun createWithList(
+            body: List<User>,
+            requestOptions: RequestOptions = RequestOptions.none(),
+        ): HttpResponseFor<User> =
+            createWithList(UserCreateWithListParams.builder().body(body).build(), requestOptions)
 
         /** @see createWithList */
         @MustBeClosed

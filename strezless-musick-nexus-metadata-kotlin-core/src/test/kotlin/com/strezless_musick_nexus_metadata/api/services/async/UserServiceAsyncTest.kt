@@ -5,7 +5,6 @@ package com.strezless_musick_nexus_metadata.api.services.async
 import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
 import com.strezless_musick_nexus_metadata.api.models.user.User
-import com.strezless_musick_nexus_metadata.api.models.user.UserCreateWithListParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserLoginParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 import org.junit.jupiter.api.Disabled
@@ -111,20 +110,18 @@ internal class UserServiceAsyncTest {
 
         val user =
             userServiceAsync.createWithList(
-                UserCreateWithListParams.builder()
-                    .addBody(
-                        User.builder()
-                            .id(10L)
-                            .email("john@email.com")
-                            .firstName("John")
-                            .lastName("James")
-                            .password("12345")
-                            .phone("12345")
-                            .username("theUser")
-                            .userStatus(1)
-                            .build()
-                    )
-                    .build()
+                listOf(
+                    User.builder()
+                        .id(10L)
+                        .email("john@email.com")
+                        .firstName("John")
+                        .lastName("James")
+                        .password("12345")
+                        .phone("12345")
+                        .username("theUser")
+                        .userStatus(1)
+                        .build()
+                )
             )
 
         user.validate()
