@@ -2,25 +2,19 @@
 
 package com.strezless_musick_nexus_metadata.api.services.async.store
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
 import com.strezless_musick_nexus_metadata.api.models.store.order.Order
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class OrderServiceAsyncTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun create() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val orderServiceAsync = client.store().order()
 
         val order =
@@ -42,10 +36,7 @@ internal class OrderServiceAsyncTest {
     @Test
     suspend fun retrieve() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val orderServiceAsync = client.store().order()
 
         val order = orderServiceAsync.retrieve(0L)
@@ -57,10 +48,7 @@ internal class OrderServiceAsyncTest {
     @Test
     suspend fun delete() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val orderServiceAsync = client.store().order()
 
         orderServiceAsync.delete(0L)

@@ -2,7 +2,6 @@
 
 package com.strezless_musick_nexus_metadata.api.services.blocking
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
@@ -11,19 +10,13 @@ import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParam
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class PetServiceTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     fun create() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val pet =
@@ -44,11 +37,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun retrieve() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val pet = petService.retrieve(0L)
@@ -59,11 +48,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun update() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val pet =
@@ -84,11 +69,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun delete() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         petService.delete(0L)
@@ -97,11 +78,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun findByStatus() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val pets =
@@ -117,11 +94,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun findByTags() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val pets = petService.findByTags(PetFindByTagsParams.builder().addTag("string").build())
@@ -132,11 +105,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun updateWithForm() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         petService.updateWithForm(
@@ -147,11 +116,7 @@ internal class PetServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun uploadImage() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val petService = client.pet()
 
         val response =
