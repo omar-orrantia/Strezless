@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 
 internal class PetServiceTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun create() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -34,7 +34,7 @@ internal class PetServiceTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun retrieve() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -45,7 +45,7 @@ internal class PetServiceTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun update() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -66,7 +66,7 @@ internal class PetServiceTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun delete() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -75,7 +75,7 @@ internal class PetServiceTest {
         petService.delete(0L)
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun findByStatus() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -91,7 +91,7 @@ internal class PetServiceTest {
         pets.forEach { it.validate() }
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun findByTags() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -102,7 +102,7 @@ internal class PetServiceTest {
         pets.forEach { it.validate() }
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun updateWithForm() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
@@ -113,7 +113,7 @@ internal class PetServiceTest {
         )
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun uploadImage() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()

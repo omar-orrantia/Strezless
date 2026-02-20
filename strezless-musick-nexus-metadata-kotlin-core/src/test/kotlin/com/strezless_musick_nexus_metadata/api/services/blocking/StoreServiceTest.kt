@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 internal class StoreServiceTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun listInventory() {
         val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()

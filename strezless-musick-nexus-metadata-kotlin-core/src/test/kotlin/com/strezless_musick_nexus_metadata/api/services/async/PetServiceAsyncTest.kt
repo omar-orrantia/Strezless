@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 
 internal class PetServiceAsyncTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun create() {
         val client =
@@ -35,7 +35,7 @@ internal class PetServiceAsyncTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun retrieve() {
         val client =
@@ -47,7 +47,7 @@ internal class PetServiceAsyncTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun update() {
         val client =
@@ -69,7 +69,7 @@ internal class PetServiceAsyncTest {
         pet.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun delete() {
         val client =
@@ -79,7 +79,7 @@ internal class PetServiceAsyncTest {
         petServiceAsync.delete(0L)
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun findByStatus() {
         val client =
@@ -96,7 +96,7 @@ internal class PetServiceAsyncTest {
         pets.forEach { it.validate() }
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun findByTags() {
         val client =
@@ -109,7 +109,7 @@ internal class PetServiceAsyncTest {
         pets.forEach { it.validate() }
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun updateWithForm() {
         val client =
@@ -121,7 +121,7 @@ internal class PetServiceAsyncTest {
         )
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun uploadImage() {
         val client =
