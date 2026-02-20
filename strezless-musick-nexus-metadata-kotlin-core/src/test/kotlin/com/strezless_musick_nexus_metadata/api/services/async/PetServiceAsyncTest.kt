@@ -2,7 +2,6 @@
 
 package com.strezless_musick_nexus_metadata.api.services.async
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
 import com.strezless_musick_nexus_metadata.api.models.pet.Pet
 import com.strezless_musick_nexus_metadata.api.models.pet.PetFindByStatusParams
@@ -11,19 +10,14 @@ import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParam
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class PetServiceAsyncTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun create() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val pet =
@@ -45,10 +39,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun retrieve() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val pet = petServiceAsync.retrieve(0L)
@@ -60,10 +51,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun update() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val pet =
@@ -85,10 +73,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun delete() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         petServiceAsync.delete(0L)
@@ -98,10 +83,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun findByStatus() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val pets =
@@ -118,10 +100,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun findByTags() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val pets =
@@ -134,10 +113,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun updateWithForm() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         petServiceAsync.updateWithForm(
@@ -149,10 +125,7 @@ internal class PetServiceAsyncTest {
     @Test
     suspend fun uploadImage() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val petServiceAsync = client.pet()
 
         val response =

@@ -2,25 +2,18 @@
 
 package com.strezless_musick_nexus_metadata.api.services.blocking.store
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 import com.strezless_musick_nexus_metadata.api.models.store.order.Order
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class OrderServiceTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     fun create() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val orderService = client.store().order()
 
         val order =
@@ -41,11 +34,7 @@ internal class OrderServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun retrieve() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val orderService = client.store().order()
 
         val order = orderService.retrieve(0L)
@@ -56,11 +45,7 @@ internal class OrderServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun delete() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val orderService = client.store().order()
 
         orderService.delete(0L)

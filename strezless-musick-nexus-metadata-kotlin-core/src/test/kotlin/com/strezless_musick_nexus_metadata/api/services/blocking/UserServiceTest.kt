@@ -2,26 +2,19 @@
 
 package com.strezless_musick_nexus_metadata.api.services.blocking
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClient
 import com.strezless_musick_nexus_metadata.api.models.user.User
 import com.strezless_musick_nexus_metadata.api.models.user.UserLoginParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class UserServiceTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     fun create() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         val user =
@@ -44,11 +37,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun retrieve() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         val user = userService.retrieve("username")
@@ -59,11 +48,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun update() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         userService.update(
@@ -88,11 +73,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun delete() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         userService.delete("username")
@@ -101,11 +82,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun createWithList() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         val user =
@@ -130,11 +107,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun login() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         userService.login(
@@ -145,11 +118,7 @@ internal class UserServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun logout() {
-        val client =
-            StrezlessMusickNexusMetadataOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = StrezlessMusickNexusMetadataOkHttpClient.builder().apiKey("My API Key").build()
         val userService = client.user()
 
         userService.logout()

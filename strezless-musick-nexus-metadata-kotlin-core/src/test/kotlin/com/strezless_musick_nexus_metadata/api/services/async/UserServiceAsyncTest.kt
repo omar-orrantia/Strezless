@@ -2,26 +2,20 @@
 
 package com.strezless_musick_nexus_metadata.api.services.async
 
-import com.strezless_musick_nexus_metadata.api.TestServerExtension
 import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
 import com.strezless_musick_nexus_metadata.api.models.user.User
 import com.strezless_musick_nexus_metadata.api.models.user.UserLoginParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class UserServiceAsyncTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun create() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         val user =
@@ -45,10 +39,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun retrieve() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         val user = userServiceAsync.retrieve("username")
@@ -60,10 +51,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun update() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         userServiceAsync.update(
@@ -89,10 +77,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun delete() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         userServiceAsync.delete("username")
@@ -102,10 +87,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun createWithList() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         val user =
@@ -131,10 +113,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun login() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         userServiceAsync.login(
@@ -146,10 +125,7 @@ internal class UserServiceAsyncTest {
     @Test
     suspend fun logout() {
         val client =
-            StrezlessMusickNexusMetadataOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
         val userServiceAsync = client.user()
 
         userServiceAsync.logout()
