@@ -1,3 +1,5 @@
+// File generated from our OpenAPI spec by Stainless.
+
 package com.strezless_musick_nexus_metadata.api.core.http
 
 import com.strezless_musick_nexus_metadata.api.core.DefaultSleeper
