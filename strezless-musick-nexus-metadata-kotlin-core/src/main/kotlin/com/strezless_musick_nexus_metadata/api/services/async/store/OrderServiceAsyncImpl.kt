@@ -22,6 +22,7 @@ import com.strezless_musick_nexus_metadata.api.models.store.order.OrderCreatePar
 import com.strezless_musick_nexus_metadata.api.models.store.order.OrderDeleteParams
 import com.strezless_musick_nexus_metadata.api.models.store.order.OrderRetrieveParams
 
+/** Access to Petstore orders */
 class OrderServiceAsyncImpl internal constructor(private val clientOptions: ClientOptions) :
     OrderServiceAsync {
 

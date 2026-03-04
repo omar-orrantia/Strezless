@@ -16,6 +16,7 @@ import com.strezless_musick_nexus_metadata.api.models.user.UserLogoutParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserRetrieveParams
 import com.strezless_musick_nexus_metadata.api.models.user.UserUpdateParams
 
+/** Operations about user */
 interface UserServiceAsync {
 
     /**

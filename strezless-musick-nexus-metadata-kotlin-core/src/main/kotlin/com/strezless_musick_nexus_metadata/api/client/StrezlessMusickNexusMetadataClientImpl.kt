@@ -47,10 +47,13 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
     ): StrezlessMusickNexusMetadataClient =
         StrezlessMusickNexusMetadataClientImpl(clientOptions.toBuilder().apply(modifier).build())
 
+    /** Everything about your Pets */
     override fun pet(): PetService = pet
 
+    /** Access to Petstore orders */
     override fun store(): StoreService = store
 
+    /** Operations about user */
     override fun user(): UserService = user
 
     override fun close() = clientOptions.close()
@@ -77,10 +80,13 @@ class StrezlessMusickNexusMetadataClientImpl(private val clientOptions: ClientOp
                 clientOptions.toBuilder().apply(modifier).build()
             )
 
+        /** Everything about your Pets */
         override fun pet(): PetService.WithRawResponse = pet
 
+        /** Access to Petstore orders */
         override fun store(): StoreService.WithRawResponse = store
 
+        /** Operations about user */
         override fun user(): UserService.WithRawResponse = user
     }
 }

@@ -19,6 +19,7 @@ import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryRe
 import com.strezless_musick_nexus_metadata.api.services.blocking.store.OrderService
 import com.strezless_musick_nexus_metadata.api.services.blocking.store.OrderServiceImpl
 
+/** Access to Petstore orders */
 class StoreServiceImpl internal constructor(private val clientOptions: ClientOptions) :
     StoreService {
 
@@ -33,6 +34,7 @@ class StoreServiceImpl internal constructor(private val clientOptions: ClientOpt
     override fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreService =
         StoreServiceImpl(clientOptions.toBuilder().apply(modifier).build())
 
+    /** Access to Petstore orders */
     override fun order(): OrderService = order
 
     override fun listInventory(
@@ -57,6 +59,7 @@ class StoreServiceImpl internal constructor(private val clientOptions: ClientOpt
         ): StoreService.WithRawResponse =
             StoreServiceImpl.WithRawResponseImpl(clientOptions.toBuilder().apply(modifier).build())
 
+        /** Access to Petstore orders */
         override fun order(): OrderService.WithRawResponse = order
 
         private val listInventoryHandler: Handler<StoreListInventoryResponse> =

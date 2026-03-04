@@ -18,6 +18,7 @@ import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParam
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageResponse
 
+/** Everything about your Pets */
 interface PetService {
 
     /**
