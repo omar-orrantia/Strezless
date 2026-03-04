@@ -45,10 +45,13 @@ interface StrezlessMusickNexusMetadataClientAsync {
         modifier: (ClientOptions.Builder) -> Unit
     ): StrezlessMusickNexusMetadataClientAsync
 
+    /** Everything about your Pets */
     fun pet(): PetServiceAsync
 
+    /** Access to Petstore orders */
     fun store(): StoreServiceAsync
 
+    /** Operations about user */
     fun user(): UserServiceAsync
 
     /**
@@ -79,10 +82,13 @@ interface StrezlessMusickNexusMetadataClientAsync {
             modifier: (ClientOptions.Builder) -> Unit
         ): StrezlessMusickNexusMetadataClientAsync.WithRawResponse
 
+        /** Everything about your Pets */
         fun pet(): PetServiceAsync.WithRawResponse
 
+        /** Access to Petstore orders */
         fun store(): StoreServiceAsync.WithRawResponse
 
+        /** Operations about user */
         fun user(): UserServiceAsync.WithRawResponse
     }
 }

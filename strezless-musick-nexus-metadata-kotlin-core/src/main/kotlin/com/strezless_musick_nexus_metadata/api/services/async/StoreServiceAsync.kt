@@ -10,6 +10,7 @@ import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryPa
 import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryResponse
 import com.strezless_musick_nexus_metadata.api.services.async.store.OrderServiceAsync
 
+/** Access to Petstore orders */
 interface StoreServiceAsync {
 
     /**
@@ -24,6 +25,7 @@ interface StoreServiceAsync {
      */
     fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreServiceAsync
 
+    /** Access to Petstore orders */
     fun order(): OrderServiceAsync
 
     /** Returns a map of status codes to quantities */
@@ -48,6 +50,7 @@ interface StoreServiceAsync {
             modifier: (ClientOptions.Builder) -> Unit
         ): StoreServiceAsync.WithRawResponse
 
+        /** Access to Petstore orders */
         fun order(): OrderServiceAsync.WithRawResponse
 
         /**

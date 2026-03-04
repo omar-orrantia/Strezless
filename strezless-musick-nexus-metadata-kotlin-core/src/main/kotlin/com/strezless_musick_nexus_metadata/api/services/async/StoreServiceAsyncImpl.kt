@@ -19,6 +19,7 @@ import com.strezless_musick_nexus_metadata.api.models.store.StoreListInventoryRe
 import com.strezless_musick_nexus_metadata.api.services.async.store.OrderServiceAsync
 import com.strezless_musick_nexus_metadata.api.services.async.store.OrderServiceAsyncImpl
 
+/** Access to Petstore orders */
 class StoreServiceAsyncImpl internal constructor(private val clientOptions: ClientOptions) :
     StoreServiceAsync {
 
@@ -33,6 +34,7 @@ class StoreServiceAsyncImpl internal constructor(private val clientOptions: Clie
     override fun withOptions(modifier: (ClientOptions.Builder) -> Unit): StoreServiceAsync =
         StoreServiceAsyncImpl(clientOptions.toBuilder().apply(modifier).build())
 
+    /** Access to Petstore orders */
     override fun order(): OrderServiceAsync = order
 
     override suspend fun listInventory(
@@ -59,6 +61,7 @@ class StoreServiceAsyncImpl internal constructor(private val clientOptions: Clie
                 clientOptions.toBuilder().apply(modifier).build()
             )
 
+        /** Access to Petstore orders */
         override fun order(): OrderServiceAsync.WithRawResponse = order
 
         private val listInventoryHandler: Handler<StoreListInventoryResponse> =

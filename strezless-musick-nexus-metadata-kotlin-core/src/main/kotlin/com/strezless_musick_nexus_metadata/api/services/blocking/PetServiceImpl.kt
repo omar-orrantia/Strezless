@@ -28,6 +28,7 @@ import com.strezless_musick_nexus_metadata.api.models.pet.PetUpdateWithFormParam
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageParams
 import com.strezless_musick_nexus_metadata.api.models.pet.PetUploadImageResponse
 
+/** Everything about your Pets */
 class PetServiceImpl internal constructor(private val clientOptions: ClientOptions) : PetService {
 
     private val withRawResponse: PetService.WithRawResponse by lazy {
