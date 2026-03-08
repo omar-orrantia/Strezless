@@ -124,7 +124,7 @@ internal class PetServiceTest {
                 PetUploadImageParams.builder()
                     .petId(0L)
                     .additionalMetadata("additionalMetadata")
-                    .body("some content")
+                    .body("Example data")
                     .build()
             )
 
