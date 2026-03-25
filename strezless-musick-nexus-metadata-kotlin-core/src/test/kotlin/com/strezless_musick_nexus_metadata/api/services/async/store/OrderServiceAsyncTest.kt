@@ -1,0 +1,56 @@
+// File generated from our OpenAPI spec by Stainless.
+
+package com.strezless_musick_nexus_metadata.api.services.async.store
+
+import com.strezless_musick_nexus_metadata.api.client.okhttp.StrezlessMusickNexusMetadataOkHttpClientAsync
+import com.strezless_musick_nexus_metadata.api.models.store.order.Order
+import java.time.OffsetDateTime
+import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
+
+internal class OrderServiceAsyncTest {
+
+    @Disabled("Mock server tests are disabled")
+    @Test
+    suspend fun create() {
+        val client =
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
+        val orderServiceAsync = client.store().order()
+
+        val order =
+            orderServiceAsync.create(
+                Order.builder()
+                    .id(10L)
+                    .complete(true)
+                    .petId(198772L)
+                    .quantity(7)
+                    .shipDate(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                    .status(Order.Status.APPROVED)
+                    .build()
+            )
+
+        order.validate()
+    }
+
+    @Disabled("Mock server tests are disabled")
+    @Test
+    suspend fun retrieve() {
+        val client =
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
+        val orderServiceAsync = client.store().order()
+
+        val order = orderServiceAsync.retrieve(0L)
+
+        order.validate()
+    }
+
+    @Disabled("Mock server tests are disabled")
+    @Test
+    suspend fun delete() {
+        val client =
+            StrezlessMusickNexusMetadataOkHttpClientAsync.builder().apiKey("My API Key").build()
+        val orderServiceAsync = client.store().order()
+
+        orderServiceAsync.delete(0L)
+    }
+}
